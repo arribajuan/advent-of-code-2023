@@ -29,13 +29,12 @@ public class Day01
         return result;
     }
 
-    public int SumCalibrationValuesFromFile()
+    public int SumCalibrationValuesFromFile(string filePath)
     {
         var totalCalibrationValue = 0;
         
-        var ddataFilePath = AppDomain.CurrentDomain.BaseDirectory + "assets/data/day01-test.txt";
         var fio = new FileIO();
-        var textLines = fio.LoadTextLinesFromFile(ddataFilePath);
+        var textLines = fio.LoadTextLinesFromFile(filePath);
 
         foreach (var textLine in textLines)
         {
@@ -44,4 +43,27 @@ public class Day01
 
         return totalCalibrationValue;
     }
+
+    public static string GetFilePath(FileType fileType)
+    {
+        var dataFilePath = string.Empty;
+
+        switch (fileType)
+        {
+             case FileType.ChallengeData:
+                 dataFilePath = AppDomain.CurrentDomain.BaseDirectory + "assets/data/day01-data.txt";;
+                 break;
+             case FileType.Test:
+                 dataFilePath = AppDomain.CurrentDomain.BaseDirectory + "assets/data/day01-test.txt";;
+                 break;
+        }
+
+        return dataFilePath;
+    }
+}
+
+public enum FileType
+{
+    Test,
+    ChallengeData
 }
