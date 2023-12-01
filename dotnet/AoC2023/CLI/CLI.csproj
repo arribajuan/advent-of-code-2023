@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Helpers\Helpers.csproj" />
+      <ProjectReference Include="..\Stars\Stars.csproj" />
     </ItemGroup>
 
 </Project>
