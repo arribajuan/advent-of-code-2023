@@ -20,7 +20,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="assets\data\" />
+      <None Remove="assets\data\day01-data.txt" />
+      <Content Include="assets\data\day01-data.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
