@@ -9,4 +9,8 @@
         <RootNamespace>CLI</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Helpers\Helpers.csproj" />
+    </ItemGroup>
+
 </Project>
