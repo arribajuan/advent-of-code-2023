@@ -2,7 +2,7 @@ namespace Stars.Day01;
 
 public class Day01
 {
-    public int FindCalibrationValue(string text, bool includeWrittenNumbers)
+    public static int FindCalibrationValue(string text, bool includeWrittenNumbers)
     {
         var firstNumber = string.Empty;
         var lastNumber = string.Empty;
@@ -51,7 +51,7 @@ public class Day01
         return result;
     }
 
-    public int SumCalibrationValuesFromFile(string filePath, bool includeWrittenNumbers)
+    public static int SumCalibrationValuesFromFile(string filePath, bool includeWrittenNumbers)
     {
         var totalCalibrationValue = 0;
         
@@ -74,18 +74,16 @@ public class Day01
                  return AppDomain.CurrentDomain.BaseDirectory + "assets/data/day01-data.txt";;
              case FileType.Test:
                  return AppDomain.CurrentDomain.BaseDirectory + "assets/data/day01-test.txt";;
+             default:
+                 return string.Empty;
         }
-
-        return string.Empty;
     }
 
-    private int ReturnWrittenNumberInText(string text)
+    private static int ReturnWrittenNumberInText(string text)
     {
-        var subStringToCheck = string.Empty;
         if (text.Length >= 3)
         {
-            subStringToCheck = text.Substring(0, 3);
-            switch (subStringToCheck)
+            switch (text[..3])
             {
                 case "one":
                     return 1;
@@ -95,10 +93,10 @@ public class Day01
                     return 6;
             }
         }
+        
         if (text.Length >= 4)
         {
-            subStringToCheck = text.Substring(0, 4);
-            switch (subStringToCheck)
+            switch (text[..4])
             {
                 case "four":
                     return 4;
@@ -108,10 +106,10 @@ public class Day01
                     return 9;
             }
         }
+
         if (text.Length >= 5)
         {
-            subStringToCheck = text.Substring(0, 5);
-            switch (subStringToCheck)
+            switch (text[..5])
             {
                 case "three":
                     return 3;
@@ -121,7 +119,7 @@ public class Day01
                     return 8;
             }
         }
-        
+
         return 0;
     }
 }

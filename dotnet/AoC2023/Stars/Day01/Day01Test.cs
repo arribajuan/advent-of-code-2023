@@ -9,8 +9,7 @@ public class Day01Test
     [InlineData("treb7uchet", 77)]
     public void Test_Day01_FindCalibrationValues_Star1(string text, int calibrationValue)
     {
-        var d01 = new Day01();
-        Assert.Equal(calibrationValue , d01.FindCalibrationValue(text, false));
+        Assert.Equal(calibrationValue , Day01.FindCalibrationValue(text, false));
     }
     
     [Theory]
@@ -23,15 +22,13 @@ public class Day01Test
     [InlineData("7pqrstsixteen", 76)]
     public void Test_Day01_FindCalibrationValues_Star2(string text, int calibrationValue)
     {
-        var d01 = new Day01();
-        Assert.Equal(calibrationValue , d01.FindCalibrationValue(text, true));
+        Assert.Equal(calibrationValue , Day01.FindCalibrationValue(text, true));
     }
     
     [Fact]
     public void Test_Day01_FindCalibrationValues_FromFile_Star1()
     {
-        var d01 = new Day01();
-        var totalCalibrationValues = d01.SumCalibrationValuesFromFile(Day01.GetFilePath(FileType.Test), false);
+        var totalCalibrationValues = Day01.SumCalibrationValuesFromFile(Day01.GetFilePath(FileType.Test), false);
         
         Assert.Equal(142, totalCalibrationValues);
     }
