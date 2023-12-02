@@ -28,4 +28,13 @@ public class Day02Test
         Assert.Equal(greenCount , set.GreenBallTotal);
         Assert.Equal(blueCount , set.BlueBallTotal);
     }
+    
+    [Fact]
+    public void Test_Day02_FindSumOfPossibleGameIds_FromFile_Star1()
+    {
+        var gameBudget = new Stars.Day02.GameBudget { AvailableRedBalls = 12, AvailableGreenBalls = 13, AvailableBlueBalls = 14 };
+        var sumOfPossibleGameIds = Day02.FindSumOfPossibleGameIdsFromFile(Day02.GetFilePath(FileType.Test), gameBudget);
+        
+        Assert.Equal(8, sumOfPossibleGameIds);
+    }
 }
