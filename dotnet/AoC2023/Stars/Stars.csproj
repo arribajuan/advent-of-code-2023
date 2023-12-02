@@ -28,6 +28,14 @@
       <Content Include="assets\data\day01-test.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="assets\data\day02-data.txt" />
+      <Content Include="assets\data\day02-data.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="assets\data\day02-test.txt" />
+      <Content Include="assets\data\day02-test.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
