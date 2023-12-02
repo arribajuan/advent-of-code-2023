@@ -2,6 +2,14 @@ namespace Stars.Day02;
 
 public static class Day02
 {
+    public static int FindSumOfPowerOfTheMinimumSetOfBallsFromFile(string filePath)
+    {
+        var fio = new FileIO();
+        var textLines = fio.LoadTextLinesFromFile(filePath);
+
+        return textLines.Select(ParseGame).Sum(game => game.PowerOfTheMinimumSetOfBalls);
+    }
+    
     public static int FindSumOfPossibleGameIdsFromFile(string filePath, GameBudget gameBudget)
     {
         var fio = new FileIO();
@@ -34,6 +42,7 @@ public static class Day02
         result.MaxRedBallCount = result.GameSets.Max(x => x.RedBallTotal);
         result.MaxGreenBallCount = result.GameSets.Max(x => x.GreenBallTotal);
         result.MaxBlueBallCount = result.GameSets.Max(x => x.BlueBallTotal);
+        result.PowerOfTheMinimumSetOfBalls = result.MaxRedBallCount * result.MaxGreenBallCount * result.MaxBlueBallCount;
         
         return result;
     }

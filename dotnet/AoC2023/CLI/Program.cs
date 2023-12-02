@@ -19,9 +19,11 @@ Console.WriteLine("-----------------------------");
 
 var gameBudget = new Stars.Day02.GameBudget { AvailableRedBalls = 12, AvailableGreenBalls = 13, AvailableBlueBalls = 14 };
 var sumOfPossibleGameIds = Stars.Day02.Day02.FindSumOfPossibleGameIdsFromFile(Stars.Day02.Day02.GetFilePath(Stars.Day02.FileType.ChallengeData), gameBudget);
+var sumOfPowerOfTheMinimumSetOfBalls = Stars.Day02.Day02.FindSumOfPowerOfTheMinimumSetOfBallsFromFile(Stars.Day02.Day02.GetFilePath(Stars.Day02.FileType.ChallengeData));
 
 Console.WriteLine("Day 2");
 Console.WriteLine($" Star 1 - Sum of possible game ids = {sumOfPossibleGameIds}");
+Console.WriteLine($" Star 2 - Sum of power of the minimum set of balls = {sumOfPowerOfTheMinimumSetOfBalls}");
 Console.WriteLine("-----------------------------");
 
 #endregion
