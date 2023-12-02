@@ -10,10 +10,22 @@ public class Day02Test
     [InlineData("Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green", 5, 6, 3, 2)]
     public void Test_Day02_ParseGame(string gameText, int gameId, int maxRed, int maxGreen, int maxBlue)
     {
-        Game game = Day02.ParseGame(gameText);
+        var game = Day02.ParseGame(gameText);
         Assert.Equal(gameId , game.GameId);
         Assert.Equal(maxRed , game.MaxRedBallCount);
         Assert.Equal(maxGreen , game.MaxGreenBallCount);
         Assert.Equal(maxBlue , game.MaxBlueBallCount);
+    }
+    
+    [Theory]
+    [InlineData("3 blue, 4 red", 4, 0, 3)]
+    [InlineData("1 red, 2 green, 6 blue", 1, 2, 6)]
+    [InlineData("2 green", 0, 2, 0)]
+    public void Test_Day02_ParseSet(string setText, int redCount, int greenCount, int blueCount)
+    {
+        var set = Day02.ParseSet(setText);
+        Assert.Equal(redCount , set.RedBallTotal);
+        Assert.Equal(greenCount , set.GreenBallTotal);
+        Assert.Equal(blueCount , set.BlueBallTotal);
     }
 }
