@@ -20,6 +20,10 @@
       <Content Include="assets\data\test-data.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="assets\data\test-2darray.txt" />
+      <Content Include="assets\data\test-2darray.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

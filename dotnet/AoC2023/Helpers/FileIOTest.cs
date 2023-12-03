@@ -50,4 +50,28 @@ public class FileIOTest
         Assert.Equal(2, resultData.Count);
     }
     
+    
+    [Fact]
+    public void Test_FileIO_Load2DArrayFromFile_NoFile()
+    {
+        var emptyData = new string[0, 0];
+        
+        var fio = new FileIO();
+        var resultData = fio.Load2DArrayFromFile("");
+        
+        Assert.Equal(emptyData, resultData);
+    }
+
+    [Fact]
+    public void Test_FileIO_Load2DArrayFromFile()
+    {
+        var testDataPath = AppDomain.CurrentDomain.BaseDirectory + "assets/data/test-2darray.txt";
+        
+        var fio = new FileIO();
+        var resultData = fio.Load2DArrayFromFile(testDataPath);
+        
+        Assert.Equal(2, resultData.Rank);
+        Assert.Equal(10, resultData.GetLength(0));
+        Assert.Equal(10, resultData.GetLength(1));
+    }
 }
