@@ -9,6 +9,19 @@ public class Day03
         return schematicNumbers.Where(number => number.IsAdjacentToSymbol).Sum(number => number.Number);
     }
     
+    public static int FindSumOfGearRatiosFromFile(string filePath)
+    {
+        var gears = FindGearsInMatrixFromFile(filePath);
+
+        foreach (var gear in gears)
+        {
+            Console.WriteLine(
+                $"Gear ({gear.Row}, {gear.Column}), TL={gear.BoundaryTopRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, BR={gear.BoundaryBottomRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, Adjacent part numbers = {gear.AdjacentPartNumbers.Count}, Gear ratio = {gear.GearRatio}");
+        }
+
+        return gears.Sum(gear => gear.GearRatio);
+    }
+    
     public static List<SchematicNumber> FindSchematicNumbersInMatrixFromFile(string filePath)
     {
         var fio = new FileIO();
@@ -40,6 +53,129 @@ public class Day03
         return schematicNumbers;
     }
 
+    public static List<Gear> FindGearsInMatrixFromFile(string filePath)
+    {
+        var fio = new FileIO();
+        var schematicMatrix = fio.Load2DArrayFromFile(filePath);
+        var schematicNumbers = FindSchematicNumbersInMatrix(schematicMatrix);
+        var gears = FindGearsInMatrix(schematicMatrix, schematicNumbers);
+        
+        if (false)
+        {
+            foreach (var number in schematicNumbers)
+            {
+                Console.WriteLine(
+                    $"Number = {number.Number}, {number.Row}.{number.Start}-{number.End}, TL={number.BoundaryTopRow}.{number.BoundaryLeft}-{number.BoundaryRight}, BR={number.BoundaryBottomRow}.{number.BoundaryLeft}-{number.BoundaryRight}, Is part number? {number.IsAdjacentToSymbol}");
+
+                for (var i = number.BoundaryTopRow; i <= number.BoundaryBottomRow; i++)
+                {
+                    for (var j = number.BoundaryLeft; j <= number.BoundaryRight; j++)
+                    {
+                        var numberText = schematicMatrix[i, j];
+                        Console.Write(numberText);
+                    }
+
+                    Console.WriteLine("");
+                }
+            }
+
+            Console.WriteLine("");
+        }
+
+        if (false)
+        {
+            foreach (var gear in gears)
+            {
+                Console.WriteLine($"Gear ({gear.Row}, {gear.Column}), TL={gear.BoundaryTopRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, BR={gear.BoundaryBottomRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, Adjacent part numbers = {gear.AdjacentPartNumbers.Count}, Gear ratio = {gear.GearRatio}");
+            }    
+        }
+        
+        return gears;
+    }
+
+    public static List<Gear> FindGearsInMatrix(string[,] schematicMatrix, List<SchematicNumber> schematicNumbers)
+    {
+        var gearList = new List<Gear>();
+
+        for (var i = 0; i < schematicMatrix.GetLength(0); i++)
+        {
+            for (var j = 0; j < schematicMatrix.GetLength(1); j++)
+            {
+                if (schematicMatrix[i, j] == "*")
+                {
+                    var newGear = new Gear()
+                    {
+                        Row = i,
+                        Column = j
+                    };
+
+                    #region find boundaries
+
+                    if (newGear.Row == 0)
+                    {
+                        newGear.BoundaryTopRow = newGear.Row;
+                    }
+                    else
+                    {
+                        newGear.BoundaryTopRow = newGear.Row - 1;
+                    }
+                        
+                    if (newGear.Column == 0)
+                    {
+                        newGear.BoundaryLeft = newGear.Column;
+                    }
+                    else
+                    {
+                        newGear.BoundaryLeft = newGear.Column - 1;
+                    }
+
+                    if (newGear.Column == schematicMatrix.GetLength(1) -1)
+                    {
+                        newGear.BoundaryRight = newGear.Column;
+                    }
+                    else
+                    {
+                        newGear.BoundaryRight = newGear.Column + 1;
+                    }
+        
+                    if (newGear.Row == schematicMatrix.GetLength(0) - 1)
+                    {
+                        newGear.BoundaryBottomRow = newGear.Row;
+                    }
+                    else
+                    {
+                        newGear.BoundaryBottomRow = newGear.Row + 1;
+                    }
+                    
+                    #endregion
+
+                    var multiplyNumbers = 1;
+                    
+                    foreach (var number in schematicNumbers)
+                    {
+                        if (number.Row <= newGear.BoundaryBottomRow &&
+                            number.Row >= newGear.BoundaryTopRow && 
+                            number.Start <= newGear.BoundaryRight && 
+                            number.End >= newGear.BoundaryLeft)
+                        {
+                            multiplyNumbers *= number.Number;
+                            newGear.AdjacentPartNumbers.Add(number.Number);
+                        }
+                    }
+
+                    if (newGear.AdjacentPartNumbers.Count == 2)
+                    {
+                        newGear.GearRatio = multiplyNumbers;
+                    }
+                    
+                    gearList.Add(newGear);
+                }
+            }
+        }
+        
+        return gearList;
+    }
+    
     private static List<SchematicNumber> FindSchematicNumbersInMatrix(string[,] schematicMatrix)
     {
         var result = new List<SchematicNumber>();
