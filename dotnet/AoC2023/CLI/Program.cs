@@ -40,3 +40,13 @@ Console.WriteLine($" Star 2 - Sum of gear ratios = {sumOfGearRatios}");
 Console.WriteLine("-----------------------------");
 
 #endregion
+
+#region Day 4
+
+var pointsInCardPile = Stars.Day04.Day04.CalculatePointsInCardPileFromFile(Stars.Day04.Day04.GetFilePath(Stars.Day04.FileType.ChallengeData));
+
+Console.WriteLine("Day 4");
+Console.WriteLine($" Star 1 - Sum of points in card pile = {pointsInCardPile}");
+Console.WriteLine("-----------------------------");
+
+#endregion
