@@ -13,11 +13,10 @@ public class Day03
     {
         var gears = FindGearsInMatrixFromFile(filePath);
 
-        foreach (var gear in gears)
-        {
-            Console.WriteLine(
-                $"Gear ({gear.Row}, {gear.Column}), TL={gear.BoundaryTopRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, BR={gear.BoundaryBottomRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, Adjacent part numbers = {gear.AdjacentPartNumbers.Count}, Gear ratio = {gear.GearRatio}");
-        }
+        //foreach (var gear in gears)
+        //{
+        //    Console.WriteLine($"Gear ({gear.Row}, {gear.Column}), TL={gear.BoundaryTopRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, BR={gear.BoundaryBottomRow}.{gear.BoundaryLeft}-{gear.BoundaryRight}, Adjacent part numbers = {gear.AdjacentPartNumbers.Count}, Gear ratio = {gear.GearRatio}");
+        //}
 
         return gears.Sum(gear => gear.GearRatio);
     }

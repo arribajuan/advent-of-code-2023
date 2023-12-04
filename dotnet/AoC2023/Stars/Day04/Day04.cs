@@ -4,18 +4,42 @@ namespace Stars.Day04;
 
 public class Day04
 {
+    public static int CalculateTotalCardsFromFile(string filePath)
+    {
+        var cardPile = ReadCardPileFromFile(filePath);
+        var cardBunches = cardPile.Select(card => new CardBunch() { Card = card, Count = 1 }).ToList();
+
+        for (var i = 0; i < cardBunches.Count; i++)
+        {
+            //Console.WriteLine($"Processing card: {cardBunches[i].Card.CardName} - {cardBunches[i].Card.YourWinningNumbers.Count} matching numbers - count = {cardBunches[i].Count} ");
+            
+            for (var j = 0; j < cardBunches[i].Card.YourWinningNumbers.Count; j++)
+            {
+                if ((i + j + 1 < cardBunches.Count))
+                {
+                    //Console.WriteLine($" +{cardBunches[i].Count} to {cardBunches[i + j + 1].Card.CardName}");
+
+                    cardBunches[i + j + 1].Count += cardBunches[i].Count;
+                }
+            }
+        }
+        
+        return cardBunches.Sum(cardBunches => cardBunches.Count);
+    }
+    
     public static int CalculatePointsInCardPileFromFile(string filePath)
+    {
+        var cardPile = ReadCardPileFromFile(filePath);
+
+        return cardPile.Sum(card => card.Points);
+    }
+
+    public static List<Card> ReadCardPileFromFile(string filePath)
     {
         var fio = new FileIO();
         var cardTextLines = fio.LoadTextLinesFromFile(filePath);
 
-        var cardPile = new List<Card>();
-        foreach (var cardText in cardTextLines)
-        {
-            cardPile.Add(ParseCard(cardText));
-        }
-
-        return cardPile.Sum(card => card.Points);
+        return cardTextLines.Select(cardText => ParseCard(cardText)).ToList();
     }
     
     public static Card ParseCard(string cardText)
@@ -27,7 +51,8 @@ public class Day04
         var yourNumberString = Strings.Trim(cardText.Substring(cardText.IndexOf("|") + 1, cardText.Length -1 - cardText.IndexOf("|")));
 
         newCard.CardName = cardName;
-        
+        newCard.CardNumber = int.Parse(cardName.Replace("Card ", "").Trim());
+
         var winningNumberStringArray = winningNumberString.Split(" ");
         foreach (var winningNumberStringItem in winningNumberStringArray)
         {
@@ -67,12 +92,12 @@ public class Day04
 
         newCard.Points = points;
         
-        Console.WriteLine(cardText);
-        Console.WriteLine(cardName);
-        Console.WriteLine(winningNumberString);
-        Console.WriteLine(yourNumberString);
-        Console.WriteLine(points);
-        Console.WriteLine("");
+        //Console.WriteLine(cardText);
+        //Console.WriteLine(cardName + " - " + newCard.CardNumber);
+        //Console.WriteLine(winningNumberString);
+        //Console.WriteLine(yourNumberString);
+        //Console.WriteLine(points);
+        //Console.WriteLine("");
 
         return newCard;
     }
