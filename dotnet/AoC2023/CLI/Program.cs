@@ -27,3 +27,16 @@ Console.WriteLine($" Star 2 - Sum of power of the minimum set of balls = {sumOfP
 Console.WriteLine("-----------------------------");
 
 #endregion
+
+
+#region Day 3
+
+var sumOfNumberParts = Stars.Day03.Day03.FindSumOfPartNumbersFromFile(Stars.Day03.Day03.GetFilePath(Stars.Day03.FileType.ChallengeData));
+var sumOfGearRatios = Stars.Day03.Day03.FindSumOfGearRatiosFromFile(Stars.Day03.Day03.GetFilePath(Stars.Day03.FileType.ChallengeData));
+
+Console.WriteLine("Day 3");
+Console.WriteLine($" Star 1 - Sum of part numbers = {sumOfNumberParts}");
+Console.WriteLine($" Star 2 - Sum of gear ratios = {sumOfGearRatios}");
+Console.WriteLine("-----------------------------");
+
+#endregion
