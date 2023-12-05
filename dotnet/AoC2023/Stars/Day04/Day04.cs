@@ -36,8 +36,7 @@ public class Day04
 
     public static List<Card> ReadCardPileFromFile(string filePath)
     {
-        var fio = new FileIO();
-        var cardTextLines = fio.LoadTextLinesFromFile(filePath);
+        var cardTextLines = FileIO.LoadTextLinesFromFile(filePath);
 
         return cardTextLines.Select(cardText => ParseCard(cardText)).ToList();
     }

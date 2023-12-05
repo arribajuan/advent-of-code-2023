@@ -21,7 +21,11 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <None Remove="assets\data\test-2darray.txt" />
-      <Content Include="assets\data\test-2darray.txt">
+      <Content Include="assets\data\test-2darray-day3.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="assets\data\test-2darray-day5.txt" />
+      <Content Include="assets\data\test-2darray-day5.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
