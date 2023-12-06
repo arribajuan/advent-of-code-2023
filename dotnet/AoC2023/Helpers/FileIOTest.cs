@@ -66,7 +66,7 @@ public class FileIOTest
     [Fact]
     public void Test_FileIO_Load2DArrayFromFileDay5_NoFile()
     {
-        var emptyData = new string[0, 0];
+        var emptyData = new int[0, 0];
         var resultData = FileIO.Load2DArrayFromFileDay5("");
         
         Assert.Equal(emptyData, resultData);

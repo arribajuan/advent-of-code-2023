@@ -29,9 +29,9 @@ public class FileIO
         return Parse.Load2DArrayFromTextLinesDay3(lines);;
     }
     
-    public static string[,] Load2DArrayFromFileDay5(string fileLocation)
+    public static int[,] Load2DArrayFromFileDay5(string fileLocation)
     {
-        if (!File.Exists(fileLocation)) return new string[0,0];
+        if (!File.Exists(fileLocation)) return new int[0,0];
         
         var lines = LoadTextLinesFromFile(fileLocation);
         return Parse.Load2DArrayFromTextLinesDay5(lines);;

@@ -40,7 +40,7 @@ public class ParseTest
     public void Test_FileIO_Load2DArrayFromTextLinesDay5_Empty()
     {
         var emptyInput = new List<string>();
-        var emptyResult = new string [0, 0];
+        var emptyResult = new int [0, 0];
         var resultData = Parse.Load2DArrayFromTextLinesDay5(emptyInput);
         
         Assert.Equal(emptyResult, resultData);
