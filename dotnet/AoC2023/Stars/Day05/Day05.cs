@@ -89,6 +89,48 @@ public class Day05
         
         #endregion
         
+        #region Parse correspondance
+
+        result.SeedToSoilCorrespondances = ParseAlmanacCorrespondance(result.SeedToSoilMap);
+        result.SoilToFertilizerCorrespondances = ParseAlmanacCorrespondance(result.SoilToFertilizerMap);
+        result.FertilizerToWaterCorrespondances = ParseAlmanacCorrespondance(result.FertilizerToWaterMap);
+        result.WaterToLightCorrespondances = ParseAlmanacCorrespondance(result.WaterToLightMap);
+        result.LightToTemperatureCorrespondances = ParseAlmanacCorrespondance(result.LightToTemperatureMap);
+        result.TemperatureToHumidityCorrespondances = ParseAlmanacCorrespondance(result.TemperatureToHumidityMap);
+        result.HumidityToLocationCorrespondances = ParseAlmanacCorrespondance(result.HumidityToLocationMap);
+        
+        #endregion
+        
+        return result;
+    }
+
+    public static List<Correspondance> ParseAlmanacCorrespondance(int[,] correspondanceMap)
+    {
+        var result = new List<Correspondance>();
+
+        // Init
+        for (var i = 0; i < 100; i++)
+        {
+            result.Add(new Correspondance()
+            {
+                Source = i,
+                Destination = i
+            });
+        }
+
+        for (var i = 0; i < correspondanceMap.GetLength(0); i++)
+        {
+            var destinationRangeStart = correspondanceMap[i, 0];
+            var sourceRangeStart = correspondanceMap[i, 1];
+            var rangeLength = correspondanceMap[i, 2];
+
+            for (var j = sourceRangeStart; j < sourceRangeStart + rangeLength; j++)
+            {
+                result[j].Source = j;
+                result[j].Destination = destinationRangeStart + (j - sourceRangeStart);
+            }
+        }
+
         return result;
     }
     
