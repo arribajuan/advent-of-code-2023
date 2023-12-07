@@ -3,6 +3,7 @@ namespace Stars.Day05;
 public class Day05Test
 {
     
+    [Fact]
     public void Test_Day05_FindLocationsForAlmanacSeeds_FromFile_Test()
     {
         var almanac = Day05.ParseAlmanacFromFile(Day05.GetFilePath(FileType.Test));
@@ -12,7 +13,6 @@ public class Day05Test
         Assert.Equal(35, minLocation);
     }
     
-    [Fact]
     public void Test_Day05_FindLocationsForAlmanacSeeds_FromFile_Challenge()
     {
         var almanac = Day05.ParseAlmanacFromFile(Day05.GetFilePath(FileType.ChallengeData));
@@ -22,7 +22,7 @@ public class Day05Test
         Assert.Equal(35, minLocation);
     }
     
-    
+    [Fact]
     public void Test_Day05_ParseAlmanac_FromFile_Test()
     {
         var almanac = Day05.ParseAlmanacFromFile(Day05.GetFilePath(FileType.Test));
