@@ -2,6 +2,6 @@ namespace Stars.Day05;
 
 public class Correspondance
 {
-    public int Source { get; set; }
-    public int Destination { get; set; }
+    public long Source { get; set; }
+    public long Destination { get; set; }
 }

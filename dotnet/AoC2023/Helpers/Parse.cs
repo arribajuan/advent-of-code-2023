@@ -19,18 +19,18 @@ public class Parse
         return result;
     }
     
-    public static int[,] Load2DArrayFromTextLinesDay5(List<string> lines)
+    public static long[,] Load2DArrayFromTextLinesDay5(List<string> lines)
     {
-        if (lines.Count == 0) return new int [0, 0];
+        if (lines.Count == 0) return new long [0, 0];
         
-        var result = new int[lines.Count, lines[0].Trim().Split(" ").Length];
+        var result = new long[lines.Count, lines[0].Trim().Split(" ").Length];
         for (var i = 0; i < lines.Count; i++)
         {
             var itemArray = lines[i].Trim().Split(" ");
             
             for (var j = 0; j < itemArray.Length; j++)
             {
-                result[i, j] = Convert.ToInt32(itemArray[j].Trim());
+                result[i, j] = Convert.ToInt64(itemArray[j].Trim());
             }
         }
         

@@ -28,7 +28,6 @@ Console.WriteLine("-----------------------------");
 
 #endregion
 
-
 #region Day 3
 
 var sumOfNumberParts = Stars.Day03.Day03.FindSumOfPartNumbersFromFile(Stars.Day03.Day03.GetFilePath(Stars.Day03.FileType.ChallengeData));
@@ -49,6 +48,25 @@ var totalCards = Stars.Day04.Day04.CalculateTotalCardsFromFile(Stars.Day04.Day04
 Console.WriteLine("Day 4");
 Console.WriteLine($" Star 1 - Sum of points in card pile = {pointsInCardPile}");
 Console.WriteLine($" Star 2 - Total cards = {totalCards}");
+Console.WriteLine("-----------------------------");
+
+#endregion
+
+#region Day 5
+
+Console.WriteLine("-----------------------------");
+Console.WriteLine("Day 5");
+Console.WriteLine("Start - " + DateTime.Now);
+
+var almanac = Stars.Day05.Day05.ParseAlmanacFromFile(Stars.Day05.Day05.GetFilePath(Stars.Day05.FileType.ChallengeData));
+Console.WriteLine("Parse complete - " + DateTime.Now);
+
+var locations1 = Stars.Day05.Day05.FindLocationsForAlmanacSeeds(almanac, Stars.Day05.SeedType.Normal);
+Console.WriteLine($" Star 1 - Lowest location number = {locations1.Min()} - " + DateTime.Now);
+
+var locations2 = Stars.Day05.Day05.FindLocationsForAlmanacSeeds(almanac, Stars.Day05.SeedType.Extended);
+Console.WriteLine($" Star 2 - Lowest location number (extended seeds) = {locations2.Min()} - " + DateTime.Now);
+
 Console.WriteLine("-----------------------------");
 
 #endregion

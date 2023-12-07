@@ -2,20 +2,23 @@ namespace Stars.Day05;
 
 public class Almanac
 {
-    public int[] SeedArray { get; set; }
-    public int [,] SeedToSoilMap { get; set; }
-    public int [,] SoilToFertilizerMap { get; set; }
-    public int [,] FertilizerToWaterMap { get; set; }
-    public int [,] WaterToLightMap { get; set; }
-    public int [,] LightToTemperatureMap { get; set; }
-    public int [,] TemperatureToHumidityMap { get; set; }
-    public int [,] HumidityToLocationMap { get; set; }
+    public long[] SeedArray { get; set; }
 
-    public List<Correspondance> SeedToSoilCorrespondances { get; set; } = new();
-    public List<Correspondance> SoilToFertilizerCorrespondances { get; set; } = new();
-    public List<Correspondance> FertilizerToWaterCorrespondances { get; set; } = new();
-    public List<Correspondance> WaterToLightCorrespondances { get; set; } = new();
-    public List<Correspondance> LightToTemperatureCorrespondances { get; set; } = new();
-    public List<Correspondance> TemperatureToHumidityCorrespondances { get; set; } = new();
-    public List<Correspondance> HumidityToLocationCorrespondances { get; set; } = new();
+    public long[] ExtendedSeedArray { get; set; }
+    
+    public long [,] SeedToSoilMap { get; set; }
+    public long [,] SoilToFertilizerMap { get; set; }
+    public long [,] FertilizerToWaterMap { get; set; }
+    public long [,] WaterToLightMap { get; set; }
+    public long [,] LightToTemperatureMap { get; set; }
+    public long [,] TemperatureToHumidityMap { get; set; }
+    public long [,] HumidityToLocationMap { get; set; }
+
+    public List<CorrespondanceMap> SeedToSoilCorrespondances { get; set; } = new();
+    public List<CorrespondanceMap> SoilToFertilizerCorrespondances { get; set; } = new();
+    public List<CorrespondanceMap> FertilizerToWaterCorrespondances { get; set; } = new();
+    public List<CorrespondanceMap> WaterToLightCorrespondances { get; set; } = new();
+    public List<CorrespondanceMap> LightToTemperatureCorrespondances { get; set; } = new();
+    public List<CorrespondanceMap> TemperatureToHumidityCorrespondances { get; set; } = new();
+    public List<CorrespondanceMap> HumidityToLocationCorrespondances { get; set; } = new();
 }
