@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+
 namespace Stars.Day06;
 
 public class Day06
@@ -16,10 +18,24 @@ public class Day06
         return marginOfError;
     } 
     
-    public static int[] SimulateRace(int raceTime, int distanceRecord)
+    public static int[] SimulateRace(int raceTime, long distanceRecord)
     {
-        var winningOptions = new List<int>();
+        
+        var winningOptions = new ConcurrentBag<int>();
+        Parallel.For(0, raceTime, i =>
+        {
+            var availableTime = raceTime - i;
+            var windupTime = i;
+            var distanceTravelled = CalculateDistanceTraveled(windupTime, availableTime);
 
+            if (distanceTravelled > distanceRecord)
+            {
+                winningOptions.Add(i);
+            }
+        });
+        
+        /*
+        var winningOptions = new List<int>();
         for (var i = 0; i < raceTime; i++)
         {
             var availableTime = raceTime - i;
@@ -31,6 +47,7 @@ public class Day06
                 winningOptions.Add(i);
             }
         }
+        */
         
         return winningOptions.ToArray();
     }

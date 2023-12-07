@@ -5,6 +5,6 @@ namespace Stars.Day06;
 public class Race
 {
     public int RaceTime { get; set; }
-    public int DistanceRecord { get; set; }
+    public long DistanceRecord { get; set; }
     public int[] WinningOptions { get; set; }
 }
