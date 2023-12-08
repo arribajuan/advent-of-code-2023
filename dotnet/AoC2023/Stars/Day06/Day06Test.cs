@@ -23,16 +23,9 @@ public class Day06Test
         var result2 = Day06.SimulateRace(raceTime: 15, distanceRecord: 40);
         var result3 = Day06.SimulateRace(raceTime: 30, distanceRecord: 200);
 
-        Assert.Equal(4, result1.Length);
-        
-        //if (result1.Length != 4) return;
-        //Assert.Equal(2, result1[0]);
-        //Assert.Equal(3, result1[1]);
-        //Assert.Equal(4, result1[2]);
-        //Assert.Equal(5, result1[3]);
-        
-        Assert.Equal(8, result2.Length);
-        Assert.Equal(9, result3.Length);
+        Assert.Equal(4, result1);
+        Assert.Equal(8, result2);
+        Assert.Equal(9, result3);
     }
 
     [Fact]
@@ -47,7 +40,7 @@ public class Day06Test
         
         Assert.Equal(288, result);
     }
-    
+
     [Fact]
     public void Test_Day06_SimulateRaces_Challenge1()
     {
@@ -61,7 +54,7 @@ public class Day06Test
         
         Assert.Equal(2756160, result);
     }
-    
+
     [Fact]
     public void Test_Day06_SimulateRaces_Test2()
     {
@@ -72,7 +65,7 @@ public class Day06Test
         
         Assert.Equal(71503, result);
     }
-    
+
     [Fact]
     public void Test_Day06_SimulateRaces_Challenge2()
     {
@@ -81,6 +74,6 @@ public class Day06Test
 
         var result = Day06.SimulateRaces(races);
         
-        Assert.Equal(71503, result);
+        Assert.Equal(34788142, result);
     }
 }

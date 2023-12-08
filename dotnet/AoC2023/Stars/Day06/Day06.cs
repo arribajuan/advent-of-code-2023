@@ -1,27 +1,27 @@
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace Stars.Day06;
 
 public class Day06
 {
-    public static int SimulateRaces(List<Race> races)
+    public static long SimulateRaces(List<Race> races)
     {
         if (races.Count == 0) return 0;
-        
-        var marginOfError = 1;
+
+        long marginOfError = 1;
         foreach (Race race in races)
         {
-            race.WinningOptions = SimulateRace(race.RaceTime, race.DistanceRecord);
-            marginOfError *= race.WinningOptions.Length;
+            race.WinninOptionCount = SimulateRace(race.RaceTime, race.DistanceRecord);
+            marginOfError *= race.WinninOptionCount;
         }
 
         return marginOfError;
-    } 
-    
-    public static int[] SimulateRace(int raceTime, long distanceRecord)
+    }
+
+    public static long SimulateRace(long raceTime, long distanceRecord)
     {
-        
-        var winningOptions = new ConcurrentBag<int>();
+        var winningOptions = new ConcurrentBag<long>();
         Parallel.For(0, raceTime, i =>
         {
             var availableTime = raceTime - i;
@@ -33,33 +33,12 @@ public class Day06
                 winningOptions.Add(i);
             }
         });
-        
-        /*
-        var winningOptions = new List<int>();
-        for (var i = 0; i < raceTime; i++)
-        {
-            var availableTime = raceTime - i;
-            var windupTime = i;
-            var distanceTravelled = CalculateDistanceTraveled(windupTime, availableTime);
 
-            if (distanceTravelled > distanceRecord)
-            {
-                winningOptions.Add(i);
-            }
-        }
-        */
-        
-        return winningOptions.ToArray();
+        return winningOptions.ToArray().Length;
     }
-    
-    public static int CalculateDistanceTraveled(int currentSpeed, int availableRaceTime)
+
+    public static long CalculateDistanceTraveled(long currentSpeed, long availableRaceTime)
     {
-        var distanceTravelled = 0;
-        for (var i = 0; i < availableRaceTime; i++)
-        {
-            distanceTravelled += currentSpeed;
-        }
-        
-        return distanceTravelled;
+        return currentSpeed * availableRaceTime;
     }
 }
