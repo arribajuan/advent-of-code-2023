@@ -4,16 +4,14 @@ public static class Day02
 {
     public static int FindSumOfPowerOfTheMinimumSetOfBallsFromFile(string filePath)
     {
-        var fio = new FileIO();
-        var textLines = fio.LoadTextLinesFromFile(filePath);
+        var textLines = FileIO.LoadTextLinesFromFile(filePath);
 
         return textLines.Select(ParseGame).Sum(game => game.PowerOfTheMinimumSetOfBalls);
     }
     
     public static int FindSumOfPossibleGameIdsFromFile(string filePath, GameBudget gameBudget)
     {
-        var fio = new FileIO();
-        var textLines = fio.LoadTextLinesFromFile(filePath);
+        var textLines = FileIO.LoadTextLinesFromFile(filePath);
 
         return textLines.Select(ParseGame).Where(game => IsGamePossible(game, gameBudget)).Sum(game => game.GameId);
     }

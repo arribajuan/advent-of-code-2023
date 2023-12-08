@@ -4,47 +4,36 @@ namespace Helpers;
 
 public class FileIO
 {
-    public List<string> LoadTextLinesFromFile(string fileLocation)
+    public static List<string> LoadTextLinesFromFile(string fileLocation)
     {
+        if (!File.Exists(fileLocation)) return new List<string>();
+
+        var fileLineArray = File.ReadAllLines(fileLocation, Encoding.Default);
         var result = new List<string>();
-
-        if (File.Exists(fileLocation))
-        {
-            var fileLines = File.ReadAllLines(fileLocation, Encoding.Default);
-            result.AddRange(fileLines);
-        }
-
+        result.AddRange(fileLineArray);
         return result;
     }
     
-    public string LoadTextFromFile(string fileLocation)
+    public static string LoadTextFromFile(string fileLocation)
     {
-        var result = string.Empty;
-
-        if (File.Exists(fileLocation))
-        {
-            var fileText = File.ReadAllText(fileLocation, Encoding.Default);
-            result = fileText;
-        }
-
-        return result;
+        if (!File.Exists(fileLocation)) return string.Empty;
+        
+        return File.ReadAllText(fileLocation, Encoding.Default);;
     }
 
-    public string[,] Load2DArrayFromFile(string fileLocation)
+    public static string[,] Load2DArrayFromFileDay3(string fileLocation)
     {
+        if (!File.Exists(fileLocation)) return new string[0,0];
+        
         var lines = LoadTextLinesFromFile(fileLocation);
-        if (lines.Count == 0) return new string [0, 0];
+        return Parse.Load2DArrayFromTextLinesDay3(lines);;
+    }
+    
+    public static long[,] Load2DArrayFromFileDay5(string fileLocation)
+    {
+        if (!File.Exists(fileLocation)) return new long[0,0];
         
-        var result = new string[lines.Count, lines[0].Length];
-        for (int i = 0; i < lines.Count; i++)
-        {
-            var line = lines[i].ToCharArray();
-            for (int j = 0; j < line.GetLength(0); j++)
-            {
-                result[i, j] = line[j].ToString();
-            }
-        }
-        
-        return result;
+        var lines = LoadTextLinesFromFile(fileLocation);
+        return Parse.Load2DArrayFromTextLinesDay5(lines);;
     }
 }

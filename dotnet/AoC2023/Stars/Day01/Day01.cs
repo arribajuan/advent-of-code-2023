@@ -55,8 +55,7 @@ public class Day01
     {
         var totalCalibrationValue = 0;
         
-        var fio = new FileIO();
-        var textLines = fio.LoadTextLinesFromFile(filePath);
+        var textLines = FileIO.LoadTextLinesFromFile(filePath);
 
         foreach (var textLine in textLines)
         {

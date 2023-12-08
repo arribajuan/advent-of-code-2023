@@ -23,8 +23,7 @@ public class Day03
     
     public static List<SchematicNumber> FindSchematicNumbersInMatrixFromFile(string filePath)
     {
-        var fio = new FileIO();
-        var schematicMatrix = fio.Load2DArrayFromFile(filePath);
+        var schematicMatrix = FileIO.Load2DArrayFromFileDay3(filePath);
         var schematicNumbers = FindSchematicNumbersInMatrix(schematicMatrix);
 
         if (false)
@@ -54,8 +53,7 @@ public class Day03
 
     public static List<Gear> FindGearsInMatrixFromFile(string filePath)
     {
-        var fio = new FileIO();
-        var schematicMatrix = fio.Load2DArrayFromFile(filePath);
+        var schematicMatrix = FileIO.Load2DArrayFromFileDay3(filePath);
         var schematicNumbers = FindSchematicNumbersInMatrix(schematicMatrix);
         var gears = FindGearsInMatrix(schematicMatrix, schematicNumbers);
         
