@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Stars.Day06;
+
 Console.WriteLine("Hello there!");
 Console.WriteLine("-----------------------------");
 
@@ -54,18 +56,41 @@ Console.WriteLine("-----------------------------");
 
 #region Day 5
 
-Console.WriteLine("-----------------------------");
-Console.WriteLine("Day 5");
-Console.WriteLine("Start - " + DateTime.Now);
+if (false)
+{
+    Console.WriteLine("Day 5");
+    Console.WriteLine("Start - " + DateTime.Now);
 
-var almanac = Stars.Day05.Day05.ParseAlmanacFromFile(Stars.Day05.Day05.GetFilePath(Stars.Day05.FileType.ChallengeData));
-Console.WriteLine("Parse complete - " + DateTime.Now);
+    var almanac = Stars.Day05.Day05.ParseAlmanacFromFile(Stars.Day05.Day05.GetFilePath(Stars.Day05.FileType.ChallengeData));
+    Console.WriteLine("Parse complete - " + DateTime.Now);
 
-var locations1 = Stars.Day05.Day05.FindLocationsForAlmanacSeeds(almanac, Stars.Day05.SeedType.Normal);
-Console.WriteLine($" Star 1 - Lowest location number = {locations1.Min()} - " + DateTime.Now);
+    var locations1 = Stars.Day05.Day05.FindLocationsForAlmanacSeeds(almanac, Stars.Day05.SeedType.Normal);
+    Console.WriteLine($" Star 1 - Lowest location number = {locations1.Min()} - " + DateTime.Now);
 
-var locations2 = Stars.Day05.Day05.FindLocationsForAlmanacSeeds(almanac, Stars.Day05.SeedType.Extended);
-Console.WriteLine($" Star 2 - Lowest location number (extended seeds) = {locations2.Min()} - " + DateTime.Now);
+    //var locations2 = Stars.Day05.Day05.FindLocationsForAlmanacSeeds(almanac, Stars.Day05.SeedType.Extended);
+    //Console.WriteLine($" Star 2 - Lowest location number (extended seeds) = {locations2.Min()} - " + DateTime.Now);
+
+    Console.WriteLine("-----------------------------");
+}
+
+#endregion
+
+#region Day 6
+
+Console.WriteLine("Day 6");
+
+var races1 = new List<Race>();
+races1.Add(new Race() { RaceTime = 48, DistanceRecord = 296 });
+races1.Add(new Race() { RaceTime = 93, DistanceRecord = 1926 });
+races1.Add(new Race() { RaceTime = 85, DistanceRecord = 1236 });
+races1.Add(new Race() { RaceTime = 95, DistanceRecord = 1391 });
+var result1 = Day06.SimulateRaces(races1);
+Console.WriteLine($" Star 1 - Total cards = {result1}");
+
+var races2 = new List<Race>();
+races2.Add(new Race() { RaceTime = 48938595, DistanceRecord = 296192812361391 });
+var result2 = Day06.SimulateRaces(races2);
+Console.WriteLine($" Star 2 - Total cards = {result2}");
 
 Console.WriteLine("-----------------------------");
 
